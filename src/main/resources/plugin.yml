@@ -1,0 +1,4 @@
+name: Vanilla+
+version: '${project.version}'
+main: de.honorshelter.vanilla.Main
+api-version: 1.19
