@@ -5,6 +5,7 @@ import de.honorshelter.vanilla.Function;
 import de.honorshelter.vanilla.Main;
 import org.bukkit.Material;
 import org.bukkit.Server;
+import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
@@ -22,6 +23,9 @@ public class CustomRecipes implements Function {
         1 Quartzblock = 4 Quartz
         1 Glowstoneblock = 4 Glowstone
         2 Slabs = 1 Block
+
+        (Furnace)
+        1 Rotten Flesh = 1 Leder
      */
 
     /*
@@ -56,6 +60,7 @@ public class CustomRecipes implements Function {
         }
 
         server.addRecipe(hopper());
+        server.addRecipe(leather());
     }
 
     //8 OAK logs = 4 OAK chests
@@ -316,6 +321,16 @@ public class CustomRecipes implements Function {
         recipe.shape("ewe", "ewe", " e ");
         recipe.setIngredient('e', Material.IRON_INGOT);
         recipe.setIngredient('w', Material.OAK_LOG);
+
+        return recipe;
+    }
+
+    private FurnaceRecipe leather() {
+        ItemStack leather =  new ItemStack(Material.LEATHER);
+
+        FurnaceRecipe recipe = new FurnaceRecipe(leather, Material.ROTTEN_FLESH);
+        recipe.setCookingTime(1200);
+        recipe.setExperience(1);
 
         return recipe;
     }
