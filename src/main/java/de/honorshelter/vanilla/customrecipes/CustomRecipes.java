@@ -3,12 +3,16 @@ package de.honorshelter.vanilla.customrecipes;
 import com.google.common.collect.Multimap;
 import de.honorshelter.vanilla.Function;
 import de.honorshelter.vanilla.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Server;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -46,7 +50,7 @@ public class CustomRecipes implements Function {
         Server server = main.getServer();
 
         server.addRecipe(chest());
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             server.addRecipe(stick(i));
         }
         server.addRecipe(quartz());
@@ -54,13 +58,16 @@ public class CustomRecipes implements Function {
 
         Map<String, Material[]> material_map = material_list();
         for (Map.Entry<String, Material[]> entry : material_map.entrySet()) {
-            for(int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {
                 server.addRecipe(slaps(i, entry.getValue()[1], entry.getValue()[0]));
             }
         }
 
         server.addRecipe(hopper());
         server.addRecipe(leather());
+        server.addRecipe(camera());
+        server.addRecipe(stick());
+        server.addRecipe(ultimateStick());
     }
 
     //8 OAK logs = 4 OAK chests
@@ -71,6 +78,25 @@ public class CustomRecipes implements Function {
         ShapedRecipe recipe = new ShapedRecipe(chest);
         recipe.shape("www", "w w", "www");
         recipe.setIngredient('w', Material.OAK_LOG);
+
+        return recipe;
+    }
+
+    private ShapedRecipe camera() {
+        ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1, (short) 3);
+        head = Bukkit.getUnsafe().modifyItemStack(head, "{display:{Name:\"{\\\"Juckt?\\\":\\\"Junge kein Plan\\\"}\"},SkullOwner:{Id:[" + "I;-403550234,-1227534356,-1806171093,-608854317" + "],Properties:{textures:[{Value:\"" + "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2MzNmVjNTMyM2Y3NjVmZjU5ZjkxNmQyZDFhMWVjNzQ5Njg1NGNmN2JkMjZkZDJmMmNiYWRjM2RkNDkyNzljOCJ9fX0=" + "\"}]}}}");
+        ItemMeta meta = head.getItemMeta();
+        meta.setDisplayName("Kamera");
+        head.setItemMeta(meta);
+        head.setAmount(1);
+
+        ShapedRecipe recipe = new ShapedRecipe(head);
+        recipe.shape("ccr", "iei", "ccc");
+
+        recipe.setIngredient('c', Material.BLACK_CONCRETE);
+        recipe.setIngredient('r', Material.REDSTONE);
+        recipe.setIngredient('i', Material.IRON_BLOCK);
+        recipe.setIngredient('e', Material.ENDER_EYE);
 
         return recipe;
     }
@@ -107,6 +133,33 @@ public class CustomRecipes implements Function {
 
         ShapelessRecipe recipe = new ShapelessRecipe(quartz);
         recipe.addIngredient(1, Material.QUARTZ_BLOCK);
+
+        return recipe;
+    }
+
+    private ShapelessRecipe stick() {
+        ItemStack stick = new ItemStack(Material.STICK);
+        ItemMeta meta = stick.getItemMeta();
+        meta.setDisplayName("Ehrenstick");
+        stick.setItemMeta(meta);
+        stick.setAmount(1);
+
+        ShapelessRecipe recipe = new ShapelessRecipe(stick);
+        recipe.addIngredient(2, Material.EMERALD);
+
+        return recipe;
+    }
+
+    private ShapelessRecipe ultimateStick() {
+        ItemStack stick = new ItemStack(Material.STICK);
+        ItemMeta meta = stick.getItemMeta();
+        meta.setDisplayName("Ultimativer Stick");
+        stick.setItemMeta(meta);
+        stick.setAmount(1);
+
+
+        ShapelessRecipe recipe = new ShapelessRecipe(stick);
+        recipe.addIngredient(2, Material.DIAMOND);
 
         return recipe;
     }
@@ -326,7 +379,7 @@ public class CustomRecipes implements Function {
     }
 
     private FurnaceRecipe leather() {
-        ItemStack leather =  new ItemStack(Material.LEATHER);
+        ItemStack leather = new ItemStack(Material.LEATHER);
 
         FurnaceRecipe recipe = new FurnaceRecipe(leather, Material.ROTTEN_FLESH);
         recipe.setCookingTime(1200);

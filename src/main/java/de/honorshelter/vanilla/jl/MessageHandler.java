@@ -56,7 +56,8 @@ public class MessageHandler {
                 "Bingo-Bob",
                 "Der Kräutersalat",
                 "Das Wachtelei",
-                "Basti der Spermaschütze"
+                "Basti der Spermaschütze",
+                "Joshi 2.0"
         });
 
         this._names.put("Im_2D", new String[]{
@@ -112,7 +113,8 @@ public class MessageHandler {
                 "Der Tretbootpilot",
                 "Lord Julius",
                 "Der Pullundertragender Sören",
-                "Philipp der Kirchler"
+                "Philipp der Kirchler",
+                "Der Steckdosenbefruchter"
         });
 
     }
