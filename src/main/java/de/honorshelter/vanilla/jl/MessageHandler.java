@@ -57,7 +57,7 @@ public class MessageHandler {
                 "Der Kräutersalat",
                 "Das Wachtelei",
                 "Basti der Spermaschütze",
-                "Joshi 2.0"
+                "BlackFöhnnix"
         });
 
         this._names.put("Im_2D", new String[]{
